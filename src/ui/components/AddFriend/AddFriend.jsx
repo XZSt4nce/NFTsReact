@@ -13,7 +13,7 @@ export const AddFriend = () => {
     }
 
     return (
-        <WhiteContainer>
+        <WhiteContainer className={""} style={{maxWidth: "500px"}}>
             <Form onSubmit={add}>
                 <h1 className={"text-center"}>Добавить друга</h1>
                 <p className={"text-center text-muted"}>Позволит другу использовать Ваш реферальный код</p>

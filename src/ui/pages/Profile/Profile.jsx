@@ -5,6 +5,8 @@ import {Referal} from "../../components/Referal/Referal";
 import {AddFriend} from "../../components/AddFriend/AddFriend";
 import Service from "../../../services/Service";
 import {CreateSingleNFT} from "../../components/CreateSingleNFT/CreateSingleNFT";
+import {CreateCollectionNFT} from "../../components/CreateCollectionNFT/CreateCollectionNFT";
+import {MyAssets} from "../../components/MyAssets/MyAssets";
 
 const Profile = () => {
     const {wallet, owner, code} = useContext(Context);
@@ -17,18 +19,22 @@ const Profile = () => {
     }, []);
 
     return (
-        <div className={"d-flex flex-wrap flex-grow-1 align-items-start justify-content-center gap-2 p-3"}>
+        <div className={"d-flex flex-wrap flex-grow-1 align-items-start justify-content-start gap-2 p-3"}>
             {wallet ? (
                 <>
                     <Account />
+                    <MyAssets />
                     {!codeActivated && <Referal/>}
                     {code && <AddFriend />}
                     {wallet === owner && (
-                        <CreateSingleNFT />
+                        <>
+                            <CreateSingleNFT />
+                            <CreateCollectionNFT />
+                        </>
                     )}
                 </>
             ) : (
-                <div  className={"d-flex flex-column align-items-center text-white"}>
+                <div className={"d-flex flex-grow-1 flex-column align-items-center text-white"}>
                     <h1>Здравствуйте, гость!</h1>
                     <h2>Нажмите "Подключиться" в правом верхнем углу экрана</h2>
                 </div>

@@ -17,7 +17,7 @@ export const Referal = () => {
     }
 
     return (
-        <WhiteContainer>
+        <WhiteContainer className={""} style={{maxWidth: "360px"}}>
             <Form onSubmit={activateReferalCode}>
                 <h1 className={"text-center"}>Ввести код друга</h1>
                 <FormGroup controlId={'form-code'} label={"Реферальный код"} />

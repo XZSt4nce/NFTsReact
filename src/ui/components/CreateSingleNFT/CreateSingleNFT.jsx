@@ -19,7 +19,7 @@ export const CreateSingleNFT = () => {
     }
 
     return (
-        <WhiteContainer>
+        <WhiteContainer className={""} style={{maxWidth: "650px"}}>
             <h1 className={"text-center"}>Создать обособленную NFT</h1>
             <Form onSubmit={create}>
                 <FormGroup controlId={'form-title'} label={"Название"} />

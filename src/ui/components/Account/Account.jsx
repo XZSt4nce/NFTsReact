@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Button} from "react-bootstrap";
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
 import Service from "../../../services/Service";
@@ -6,7 +6,6 @@ import {Context} from "../../../core/ContextWrapper";
 
 export const Account = () => {
     const {wallet, balance, updateBalance, code, discount, updateCode, updateDiscount} = useContext(Context);
-    const [assets, setAssets] = useState([]);
 
     const generateReferalCode = async () => {
         await Service.createReferal(wallet)
@@ -22,14 +21,13 @@ export const Account = () => {
     useEffect(() => {
         (async () => {
             await updateBalance();
-            await Service.getMyNFTs(wallet).then(setAssets);
             await updateCode();
             await updateDiscount();
         })();
     }, []);
 
     return (
-        <WhiteContainer>
+        <WhiteContainer className={""} style={{maxWidth: "450px"}}>
             <h1 className={"text-center"}>Личный кабинет</h1>
             <p className={"overflow-hidden"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Адрес: {wallet}</p>
             <p>Баланс: {balance / 10**6} PROFI</p>
@@ -39,7 +37,7 @@ export const Account = () => {
             ) : (
                 <Button onClick={generateReferalCode}>Создать реферальный код</Button>
             )}
-            <p>Ваша скидка: {discount}%</p>
+            <p className={"m-0"}>Ваша скидка: {discount}%</p>
 
         </WhiteContainer>
     );
