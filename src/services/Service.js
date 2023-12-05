@@ -5,7 +5,15 @@ class Service {
     web3 = new Web3(window.ethereum);
     contractAddress = "0x1cFb8cac8386266dDBEa17E332D5bCc2d64A4280";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
-    owner = "0x4FF9564519D5dEBc20c65Cb23F53c9decEcE417E";
+
+    isAddress(address) {
+        if (Web3.utils.isAddress(address)) {
+            return true;
+        } else {
+            alert("Введите верный адрес");
+            return false;
+        }
+    }
 
     async activateReferalCode(sender, code) {
         try {
@@ -17,7 +25,9 @@ class Service {
 
     async addFriend(sender, wallet) {
         try {
-            return await this.contract.methods.addFriend(wallet).send({from: sender});
+            if (this.isAddress(wallet)) {
+                return await this.contract.methods.addFriend(wallet).send({from: sender});
+            }
         } catch (e) {
             alert(e);
         }
@@ -47,9 +57,9 @@ class Service {
         }
     }
 
-    async checkAuctionExpired(index) {
+    async checkAuctionExpired(sender, index) {
         try {
-            return await this.contract.methods.checkAuctionExpired(index).send({from: this.owner});
+            return await this.contract.methods.checkAuctionExpired(index).send({from: sender});
         } catch (e) {
             alert(e);
         }
@@ -71,9 +81,9 @@ class Service {
         }
     }
 
-    async createSignleNFT(sender, title, description, image, price, issued) {
+    async createSingleNFT(sender, title, description, image, price, issued) {
         try {
-            return await this.contract.methods.createSignleNFT(title, description, image, price, issued).send({from: sender});
+            return await this.contract.methods.createSingleNFT(title, description, image, price, issued).send({from: sender});
         } catch (e) {
             alert(e);
         }
@@ -105,7 +115,9 @@ class Service {
 
     async transferNFT(sender, to, index, amount) {
         try {
-            return await this.contract.methods.transferNFT(to, index, amount).send({from: sender});
+            if (this.isAddress(to)) {
+                return await this.contract.methods.transferNFT(to, index, amount).send({from: sender});
+            }
         } catch (e) {
             alert(e);
         }

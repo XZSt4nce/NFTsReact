@@ -4,9 +4,10 @@ import {Account} from "../../components/Account/Account";
 import {Referal} from "../../components/Referal/Referal";
 import {AddFriend} from "../../components/AddFriend/AddFriend";
 import Service from "../../../services/Service";
+import {CreateSingleNFT} from "../../components/CreateSingleNFT/CreateSingleNFT";
 
 const Profile = () => {
-    const {wallet, code} = useContext(Context);
+    const {wallet, owner, code} = useContext(Context);
     const [codeActivated, setCodeActivated] = useState(false);
 
     useEffect(() => {
@@ -22,6 +23,9 @@ const Profile = () => {
                     <Account />
                     {!codeActivated && <Referal/>}
                     {code && <AddFriend />}
+                    {wallet === owner && (
+                        <CreateSingleNFT />
+                    )}
                 </>
             ) : (
                 <div  className={"d-flex flex-column align-items-center text-white"}>

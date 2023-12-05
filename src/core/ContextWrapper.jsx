@@ -4,6 +4,7 @@ import Service from "../services/Service";
 export const Context = createContext({});
 
 const ContextWrapper = ({children}) => {
+    const owner = "0x4ff9564519d5debc20c65cb23f53c9decece417e";
     const [wallet, setWallet] = useState("");
     const [balance, setBalance] = useState(0);
     const [code, setCode] = useState("");
@@ -35,6 +36,7 @@ const ContextWrapper = ({children}) => {
     }
 
     const values = {
+        owner,
         wallet,
         balance,
         code,

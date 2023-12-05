@@ -31,7 +31,7 @@ export const Account = () => {
     return (
         <WhiteContainer>
             <h1 className={"text-center"}>Личный кабинет</h1>
-            <p>Адрес: {wallet}</p>
+            <p className={"overflow-hidden"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Адрес: {wallet}</p>
             <p>Баланс: {balance / 10**6} PROFI</p>
 
             {code ? (
