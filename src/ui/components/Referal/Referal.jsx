@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
 import {Button, Form} from "react-bootstrap";
-import {FormGroup} from "../../kit/FormGroup/FormGroup";
+import {FormGroup} from "../../kit/FormInputs/FormGroup/FormGroup";
 import {Context} from "../../../core/ContextWrapper";
 import Service from "../../../services/Service";
 
@@ -11,8 +11,10 @@ export const Referal = () => {
     const activateReferalCode = async (ev) => {
         ev.preventDefault();
         await Service.activateReferalCode(wallet, ev.target[0].value)
-            .then(async () => {
-                await updateBalance();
+            .then(async (data) => {
+                if (data) {
+                    await updateBalance();
+                }
             });
     }
 

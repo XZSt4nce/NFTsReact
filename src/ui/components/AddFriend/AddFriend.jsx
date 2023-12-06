@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
 import {Button, Form} from "react-bootstrap";
-import {FormGroup} from "../../kit/FormGroup/FormGroup";
+import {FormGroup} from "../../kit/FormInputs/FormGroup/FormGroup";
 import Service from "../../../services/Service";
 import {Context} from "../../../core/ContextWrapper";
 

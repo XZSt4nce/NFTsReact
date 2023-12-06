@@ -1,27 +1,22 @@
 import React, {useContext, useEffect} from 'react';
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
-import Service from "../../../services/Service";
 import {Context} from "../../../core/ContextWrapper";
 import {NFT} from "../../kit/NFT/NFT";
 
 export const MyAssets = () => {
-    const {wallet} = useContext(Context);
-    const [assets, setAssets] = useContext([]);
+    const {assets, updateAssets} = useContext(Context);
 
     useEffect(() => {
         (async () => {
-            await Service.getMyNFTs(wallet).then((data) => {
-                if (data) {
-                    setAssets(data);
-                }
-            });
+            await updateAssets();
         })();
     }, []);
 
     return (
-        <WhiteContainer>
-            {assets?.map((asset, idx) => (
-                <NFT nft={asset} discount={0} key={idx} />
+        <WhiteContainer className={"align-items-center gap-2 overflow-auto"} style={{maxHeight: "800px"}}>
+            <h1 className={"text-center"}>Мои ассеты</h1>
+            {assets.map((asset, idx) => (
+                <NFT nft={asset} key={idx} />
             ))}
         </WhiteContainer>
     );

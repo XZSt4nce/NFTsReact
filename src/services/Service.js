@@ -3,7 +3,7 @@ import abi from "./abi.json";
 
 class Service {
     web3 = new Web3(window.ethereum);
-    contractAddress = "0x1cFb8cac8386266dDBEa17E332D5bCc2d64A4280";
+    contractAddress = "0xD3A4655a7D3cea31bFC1D113D9a28C0F48c5Ed59";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
 
     isAddress(address) {
@@ -97,9 +97,9 @@ class Service {
         }
     }
 
-    async sellNFT(sender, index, amount) {
+    async sellNFT(sender, index, amount, price) {
         try {
-            return await this.contract.methods.sellNFT(index, amount).send({from: sender});
+            return await this.contract.methods.sellNFT(index, amount, price).send({from: sender});
         } catch (e) {
             alert(e);
         }
@@ -139,9 +139,9 @@ class Service {
         }
     }
 
-    async getAssets() {
+    async getAssets(ids) {
         try {
-            return await this.contract.methods.getAssets().call();
+            return await this.contract.methods.getAssets(ids).call();
         } catch (e) {
             console.log(e);
         }
@@ -171,9 +171,17 @@ class Service {
         }
     }
 
-    async getCollections() {
+    async getCollection(id) {
         try {
-            return await this.contract.methods.getCollections().call();
+            return await this.contract.methods.getCollection(id).call();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getCollections(ids) {
+        try {
+            return await this.contract.methods.getCollections(ids).call();
         } catch (e) {
             console.log(e);
         }

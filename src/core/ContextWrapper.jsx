@@ -9,14 +9,60 @@ const ContextWrapper = ({children}) => {
     const [balance, setBalance] = useState(0);
     const [code, setCode] = useState("");
     const [discount, setDiscount] = useState(0);
+    const [assets, setAssets] = useState([]);
+    const [collections, setCollections] = useState([]);
+
+    const updateOwnerCollections = async () => {
+        await Service.getOwnerCollections(wallet)
+            .then(async (ownerCollections) => {
+                if (ownerCollections) {
+                    await Service.getCollections(ownerCollections)
+                        .then((data) => {
+                            if (data) {
+                                setCollections(data);
+                            }
+                        })
+                }
+            });
+    }
+
+    const updateAssets = async () => {
+        await Service.getMyNFTs(wallet).then((data) => {
+            if (data) {
+                setAssets(data[0].map((asset, idx) => {
+                        if (+asset.id) {
+                            return {...asset, amount: +data[1][idx]};
+                        }
+                    }).filter((el) => !!el)
+                );
+            }
+        });
+    }
 
     const updateDiscount = async () => {
         await Service.getMyDiscount(wallet)
-            .then((myDiscount) => setDiscount(+myDiscount));
+            .then((myDiscount) => {
+                if (myDiscount) {
+                    setDiscount(+myDiscount);
+                }
+            });
     }
 
     const updateCode = async () => {
-        await Service.getMyCode(wallet).then(setCode);
+        await Service.getMyCode(wallet).then((myCode) => {
+            if (myCode) {
+                setCode(myCode);
+            }
+        });
+    }
+
+    const updateBalance = async () => {
+        await Service.getBalance(wallet)
+            .then((myBalance) => {
+                if (myBalance) {
+                    setBalance(+myBalance);
+                }
+            });
     }
 
     const connect = async () => {
@@ -24,11 +70,6 @@ const ContextWrapper = ({children}) => {
             .then((accounts) => {
                 setWallet(accounts[0]);
             });
-    }
-
-    const updateBalance = async () => {
-        await Service.getBalance(wallet)
-            .then((myBalance) => setBalance(+myBalance));
     }
 
     const logout = () => {
@@ -41,6 +82,10 @@ const ContextWrapper = ({children}) => {
         balance,
         code,
         discount,
+        assets,
+        collections,
+        updateOwnerCollections,
+        updateAssets,
         connect,
         logout,
         updateBalance,

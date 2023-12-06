@@ -27,13 +27,13 @@ export const Account = () => {
     }, []);
 
     return (
-        <WhiteContainer className={""} style={{maxWidth: "450px"}}>
+        <WhiteContainer>
             <h1 className={"text-center"}>Личный кабинет</h1>
             <p className={"overflow-hidden"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Адрес: {wallet}</p>
             <p>Баланс: {balance / 10**6} PROFI</p>
 
             {code ? (
-                <p>Ваш реферальный код: {code} <Button onClick={copyCode} variant={'outline-info'}>Копировать</Button></p>
+                <p>Ваш реферальный код: <b>{code}</b> <Button onClick={copyCode} variant={'outline-info'}>Копировать</Button></p>
             ) : (
                 <Button onClick={generateReferalCode}>Создать реферальный код</Button>
             )}

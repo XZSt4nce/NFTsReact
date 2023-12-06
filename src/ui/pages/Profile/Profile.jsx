@@ -7,6 +7,13 @@ import Service from "../../../services/Service";
 import {CreateSingleNFT} from "../../components/CreateSingleNFT/CreateSingleNFT";
 import {CreateCollectionNFT} from "../../components/CreateCollectionNFT/CreateCollectionNFT";
 import {MyAssets} from "../../components/MyAssets/MyAssets";
+import {TransferNFT} from "../../components/TransferNFT/TransferNFT";
+import {ShowAsset} from "../../components/ShowAsset/ShowAsset";
+import {SellNFT} from "../../components/SellNFT/SellNFT";
+import {ShowCollection} from "../../components/ShowCollection/ShowCollection";
+import {WonLots} from "../../components/WonLots/WonLots";
+import {OwnerCollections} from "../../components/OwnerCollections/OwnerCollections";
+import {StartAuction} from "../../components/StartAuction/StartAuction";
 
 const Profile = () => {
     const {wallet, owner, code} = useContext(Context);
@@ -19,24 +26,31 @@ const Profile = () => {
     }, []);
 
     return (
-        <div className={"d-flex flex-wrap flex-grow-1 align-items-start justify-content-start gap-2 p-3"}>
+        <div className={"d-flex flex-column flex-grow-1 align-items-center gap-2 p-3"}>
             {wallet ? (
                 <>
                     <Account />
-                    <MyAssets />
+                    <WonLots />
                     {!codeActivated && <Referal/>}
                     {code && <AddFriend />}
+                    <TransferNFT />
+                    <SellNFT />
                     {wallet === owner && (
                         <>
+                            <StartAuction />
                             <CreateSingleNFT />
                             <CreateCollectionNFT />
+                            <OwnerCollections />
                         </>
                     )}
+                    <ShowAsset />
+                    <ShowCollection />
+                    <MyAssets />
                 </>
             ) : (
                 <div className={"d-flex flex-grow-1 flex-column align-items-center text-white"}>
-                    <h1>Здравствуйте, гость!</h1>
-                    <h2>Нажмите "Подключиться" в правом верхнем углу экрана</h2>
+                    <h1 className={"text-center"}>Здравствуйте, гость!</h1>
+                    <h2 className={"text-center"}>Нажмите "Подключиться" в правом верхнем углу экрана</h2>
                 </div>
             )}
         </div>
