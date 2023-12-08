@@ -8,7 +8,7 @@ export const Layout = ({children}) => {
 
     return (
         <div className={'h-100 w-100 d-flex flex-column'}>
-            <Navbar className={"p-2 d-flex flex-wrap sticky-top"} style={{backgroundColor: "rebeccapurple"}}>
+            <Navbar className={"p-2 d-flex flex-wrap"} style={{backgroundColor: "rebeccapurple"}}>
                 <Navbar.Brand className={"text-white"}>Профессионалы</Navbar.Brand>
                 <Navbar.Collapse className={"d-flex justify-content-end gap-3 flex-wrap"}>
                     {wallet ? (
