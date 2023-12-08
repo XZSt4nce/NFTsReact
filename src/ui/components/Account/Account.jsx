@@ -24,7 +24,7 @@ export const Account = () => {
             await updateCode();
             await updateDiscount();
         })();
-    }, []);
+    }, [wallet]);
 
     return (
         <WhiteContainer>

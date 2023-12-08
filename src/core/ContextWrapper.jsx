@@ -14,14 +14,9 @@ const ContextWrapper = ({children}) => {
 
     const updateOwnerCollections = async () => {
         await Service.getOwnerCollections(wallet)
-            .then(async (ownerCollections) => {
-                if (ownerCollections) {
-                    await Service.getCollections(ownerCollections)
-                        .then((data) => {
-                            if (data) {
-                                setCollections(data);
-                            }
-                        })
+            .then((data) => {
+                if (data) {
+                    setCollections(data);
                 }
             });
     }
@@ -69,11 +64,23 @@ const ContextWrapper = ({children}) => {
         await window.ethereum.request({method: "eth_requestAccounts"})
             .then((accounts) => {
                 setWallet(accounts[0]);
+            })
+            .catch((err) => {
+                if (err.code === 4001) {
+                    console.log('Please connect to MetaMask.');
+                } else {
+                    console.error(err);
+                }
             });
     }
 
     const logout = () => {
         setWallet("");
+        setBalance(0);
+        setCode("");
+        setDiscount(0);
+        setAssets([]);
+        setCollections([]);
     }
 
     const values = {

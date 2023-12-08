@@ -27,32 +27,23 @@ const Profile = () => {
 
     return (
         <div className={"d-flex flex-column flex-grow-1 align-items-center gap-2 p-3"}>
-            {wallet ? (
+            <Account />
+            <WonLots />
+            {!codeActivated && <Referal/>}
+            {code && <AddFriend />}
+            <TransferNFT />
+            <SellNFT />
+            {wallet === owner && (
                 <>
-                    <Account />
-                    <WonLots />
-                    {!codeActivated && <Referal/>}
-                    {code && <AddFriend />}
-                    <TransferNFT />
-                    <SellNFT />
-                    {wallet === owner && (
-                        <>
-                            <StartAuction />
-                            <CreateSingleNFT />
-                            <CreateCollectionNFT />
-                            <OwnerCollections />
-                        </>
-                    )}
-                    <ShowAsset />
-                    <ShowCollection />
-                    <MyAssets />
+                    <StartAuction />
+                    <CreateSingleNFT />
+                    <CreateCollectionNFT />
+                    <OwnerCollections />
                 </>
-            ) : (
-                <div className={"d-flex flex-grow-1 flex-column align-items-center text-white"}>
-                    <h1 className={"text-center"}>Здравствуйте, гость!</h1>
-                    <h2 className={"text-center"}>Нажмите "Подключиться" в правом верхнем углу экрана</h2>
-                </div>
             )}
+            <ShowAsset />
+            <ShowCollection />
+            <MyAssets />
         </div>
     );
 };

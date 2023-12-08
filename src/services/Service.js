@@ -3,9 +3,8 @@ import abi from "./abi.json";
 
 class Service {
     web3 = new Web3(window.ethereum);
-    contractAddress = "0xD3A4655a7D3cea31bFC1D113D9a28C0F48c5Ed59";
+    contractAddress = "0x81BFdC0be5087566afD6c6596c97Cd2a5071f4e8";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
-
     isAddress(address) {
         if (Web3.utils.isAddress(address)) {
             return true;
@@ -174,14 +173,6 @@ class Service {
     async getCollection(id) {
         try {
             return await this.contract.methods.getCollection(id).call();
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    async getCollections(ids) {
-        try {
-            return await this.contract.methods.getCollections(ids).call();
         } catch (e) {
             console.log(e);
         }

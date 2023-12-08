@@ -247,19 +247,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "wallet",
-        "type": "address"
-      }
-    ],
-    "name": "addFriend",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "account",
         "type": "address"
       },
@@ -517,82 +504,11 @@
             "internalType": "uint256",
             "name": "creation_date",
             "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "collection",
-            "type": "uint256"
           }
         ],
         "internalType": "struct main.Asset",
         "name": "",
         "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256[]",
-        "name": "ids",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "getAssets",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "price",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "issued",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "available",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "creation_date",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "collection",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct main.Asset[]",
-        "name": "",
-        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
@@ -765,47 +681,6 @@
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "ids",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "getCollections",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256[]",
-            "name": "ids",
-            "type": "uint256[]"
-          }
-        ],
-        "internalType": "struct main.Collection[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "auctionIndex",
         "type": "uint256"
@@ -905,11 +780,6 @@
             "internalType": "uint256",
             "name": "creation_date",
             "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "collection",
-            "type": "uint256"
           }
         ],
         "internalType": "struct main.Asset[]",
@@ -926,13 +796,54 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "NFTid",
+        "type": "uint256"
+      }
+    ],
+    "name": "getNFTCollection",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "getOwnerCollections",
     "outputs": [
       {
-        "internalType": "uint256[]",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "ids",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct main.Collection[]",
         "name": "",
-        "type": "uint256[]"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
