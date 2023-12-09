@@ -11,11 +11,12 @@ export const StartAuction = () => {
 
     const start = async (ev) => {
         ev.preventDefault();
-        const asideTime = ev.target[0].value;
-        const duration = ev.target[1].value;
-        const startPrice = ev.target[2].value;
-        const maxPrice = ev.target[3].value;
-        await Service.startAuction(wallet, asideTime, duration, startPrice, maxPrice)
+        const collectionIndex = ev.target[0].value;
+        const asideTime = ev.target[1].value;
+        const duration = ev.target[2].value;
+        const startPrice = ev.target[3].value;
+        const maxPrice = ev.target[4].value;
+        await Service.startAuction(wallet, collectionIndex, asideTime, duration, startPrice, maxPrice)
             .then(async (data) => {
                 if (data) {
                     await updateOwnerCollections();
@@ -27,10 +28,11 @@ export const StartAuction = () => {
         <WhiteContainer>
             <h1>Начать отложенный аукцион</h1>
             <Form onSubmit={start}>
+                <FormGroup label={"Индекс коллекции"} placeholder={"Введите порядковый номер Вашей коллекции"} type={"number"} min={1} controlId={"form-collection"} />
                 <FormTimeGroup label={"Время начала"} text={"Начать через"} controlId={"form-aside-time"} />
                 <FormTimeGroup label={"Продолжительность"} text={"Будет длиться"} controlId={"form-duration"} />
                 <FormGroup label={"Стартовая цена"} type={"number"} controlId={"form-start-price"} />
-                <FormGroup label={"Максимальная цена"} type={"number"} controlId={"form-max-price"} />
+                <FormGroup label={"Максимальная цена"} type={"number"} min={1} controlId={"form-max-price"} />
                 <Button type={"submit"}>Начать</Button>
             </Form>
         </WhiteContainer>

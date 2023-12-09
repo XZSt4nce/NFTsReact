@@ -7,7 +7,7 @@ export const Collection = ({collection}) => {
 
     useEffect(() => {
         (async () => {
-            await Service.getAssets(collection.ids.map((assetId) => +assetId))
+            await Service.getAssets(collection.ids)
                 .then((collectionAssets) => {
                     if (collectionAssets) {
                         setAssets(collectionAssets);

@@ -25,7 +25,7 @@ export const SellNFT = () => {
         <WhiteContainer>
             <h1 className={"text-center"}>Продать NFT ассет</h1>
             <Form onSubmit={sell}>
-                <FormGroup controlId={"form-index"} type={"number"} min={1} label={"Индекс"} placeholder={"Введите порядковый номер Вашей NFT"} />
+                <FormGroup controlId={"form-index"} type={"number"} label={"Индекс"} placeholder={"Введите порядковый номер Вашей NFT"} />
                 <FormGroup controlId={"form-amount"} type={"number"} min={1} label={"Количество"} />
                 <FormGroup controlId={"form-price"} type={"number"} min={1} label={"Цена"} placeholder={"Введите количество PROFI"} />
                 <Button className={"w-100"} type={"submit"} variant={'danger'}>Продать</Button>

@@ -26,7 +26,7 @@ const Profile = () => {
     }, []);
 
     return (
-        <div className={"d-flex flex-column flex-grow-1 align-items-center gap-2 p-3"}>
+        <>
             <Account />
             <WonLots />
             {!codeActivated && <Referal/>}
@@ -44,7 +44,7 @@ const Profile = () => {
             <ShowAsset />
             <ShowCollection />
             <MyAssets />
-        </div>
+        </>
     );
 };
 

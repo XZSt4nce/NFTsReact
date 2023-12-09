@@ -1,10 +1,11 @@
 import React from 'react';
+import {Sells} from "../../components/Sells/Sells";
 
 const MarketPlace = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+           <Sells />
+        </>
     );
 };
 

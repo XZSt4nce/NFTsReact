@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
 
-export const NFT = ({nft, discount=0}) => {
+export const NFT = ({nft}) => {
     return (
         <Card style={{maxWidth: "300px"}}>
             <Card.Img variant="top" src={`assets/${nft.image}`} alt={"Фото не найдено"} />
@@ -15,11 +15,7 @@ export const NFT = ({nft, discount=0}) => {
                     ID: {nft.id}
                 </Card.Text>
                 <Card.Text>
-                    Цена: {discount ? (
-                        <><s>{nft.price / 10**6}</s>{"\t"}{(nft.price - nft.price * discount / 100) / 10**6}</>
-                    ) : (
-                        nft.price / 10**6
-                    )} PROFI
+                    Ценность: {nft.price / 10**6} PROFI
                 </Card.Text>
                 {nft.amount && (
                     <Card.Text>
@@ -28,6 +24,9 @@ export const NFT = ({nft, discount=0}) => {
                 )}
                 <Card.Text>
                     Выпущено: {nft.issued}
+                </Card.Text>
+                <Card.Text>
+                    Доступно к продаже: {nft.available}
                 </Card.Text>
                 <Card.Text>
                     Дата создания: {new Date(+nft.creation_date * 1000).toLocaleString()}

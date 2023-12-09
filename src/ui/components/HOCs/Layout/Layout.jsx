@@ -22,7 +22,11 @@ export const Layout = ({children}) => {
                     )}
                 </Navbar.Collapse>
             </Navbar>
-            {wallet ? children : (
+            {wallet ? (
+                <div className={"d-flex flex-column flex-grow-1 align-items-center gap-2 p-3 overflow-auto"}>
+                    {children}
+                </div>
+            ) : (
                 <div className={"d-flex flex-grow-1 flex-column align-items-center text-white"}>
                     <h1 className={"text-center"}>Здравствуйте, гость!</h1>
                     <h2 className={"text-center"}>Нажмите "Подключиться" в правом верхнем углу экрана</h2>

@@ -11,6 +11,16 @@ const ContextWrapper = ({children}) => {
     const [discount, setDiscount] = useState(0);
     const [assets, setAssets] = useState([]);
     const [collections, setCollections] = useState([]);
+    const [sells, setSells] = useState([]);
+
+    const updateSells = async () => {
+        await Service.getSells()
+            .then((data) => {
+                if (data) {
+                    setSells(data);
+                }
+            });
+    }
 
     const updateOwnerCollections = async () => {
         await Service.getOwnerCollections(wallet)
@@ -91,6 +101,8 @@ const ContextWrapper = ({children}) => {
         discount,
         assets,
         collections,
+        sells,
+        updateSells,
         updateOwnerCollections,
         updateAssets,
         connect,

@@ -14,11 +14,13 @@ export const OwnerCollections = () => {
     }, []);
 
     return (
-        <WhiteContainer className={"mw-100 gap-2"}>
+        <WhiteContainer className={"mw-100 align-items-center gap-2"}>
             <h1 className={"text-center"}>Ваши коллекции</h1>
-            {collections.length > 0 ? collections.map((collection) => (
-                <Collection collection={collection} />
-            )) : <EmptyListPlug />}
+            <div className={"w-100 d-flex flex-column gap-2 overflow-auto"} style={{maxHeight: "800px"}}>
+                {collections.length > 0 ? collections.map((collection, idx) => (
+                    <Collection collection={collection} key={idx} />
+                )) : <EmptyListPlug />}
+            </div>
         </WhiteContainer>
     );
 };

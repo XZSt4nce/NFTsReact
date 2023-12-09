@@ -5,6 +5,7 @@ class Service {
     web3 = new Web3(window.ethereum);
     contractAddress = "0x81BFdC0be5087566afD6c6596c97Cd2a5071f4e8";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
+
     isAddress(address) {
         if (Web3.utils.isAddress(address)) {
             return true;
