@@ -10,10 +10,10 @@ export const SellNFT = () => {
 
     const sell = async (ev) => {
         ev.preventDefault();
-        const index = +ev.target[0].value;
+        const id = +ev.target[0].value;
         const amount = +ev.target[1].value;
         const price = +ev.target[2].value * 10**6;
-        await Service.sellNFT(wallet, index, amount, price)
+        await Service.sellNFT(wallet, id, amount, price)
             .then(async (data) => {
                 if (data) {
                     await updateAssets();
@@ -25,7 +25,7 @@ export const SellNFT = () => {
         <WhiteContainer>
             <h1 className={"text-center"}>Продать NFT ассет</h1>
             <Form onSubmit={sell}>
-                <FormGroup controlId={"form-index"} type={"number"} label={"Индекс"} placeholder={"Введите порядковый номер Вашей NFT"} />
+                <FormGroup controlId={"form-nft"} type={"number"} min={1} label={"ID"} placeholder={"Введите идентификатор Вашей NFT"} />
                 <FormGroup controlId={"form-amount"} type={"number"} min={1} label={"Количество"} />
                 <FormGroup controlId={"form-price"} type={"number"} min={1} label={"Цена"} placeholder={"Введите количество PROFI"} />
                 <Button className={"w-100"} type={"submit"} variant={'danger'}>Продать</Button>

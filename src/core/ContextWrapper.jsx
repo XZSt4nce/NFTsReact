@@ -4,7 +4,7 @@ import Service from "../services/Service";
 export const Context = createContext({});
 
 const ContextWrapper = ({children}) => {
-    const owner = "0x4ff9564519d5debc20c65cb23f53c9decece417e";
+    const owner = "0x4FF9564519D5dEBc20c65Cb23F53c9decEcE417E";
     const [wallet, setWallet] = useState("");
     const [balance, setBalance] = useState(0);
     const [code, setCode] = useState("");
@@ -12,6 +12,16 @@ const ContextWrapper = ({children}) => {
     const [assets, setAssets] = useState([]);
     const [collections, setCollections] = useState([]);
     const [sells, setSells] = useState([]);
+    const [auctions, setAuctions] = useState([]);
+
+    const updateAuctions = async () => {
+        await Service.getAuctions()
+            .then((data) => {
+                if (data) {
+                    setAuctions(data);
+                }
+            })
+    }
 
     const updateSells = async () => {
         await Service.getSells()
@@ -26,7 +36,7 @@ const ContextWrapper = ({children}) => {
         await Service.getOwnerCollections(wallet)
             .then((data) => {
                 if (data) {
-                    setCollections(data);
+                    setCollections(data.filter((collection) => collection.id !== "0"));
                 }
             });
     }
@@ -102,6 +112,8 @@ const ContextWrapper = ({children}) => {
         assets,
         collections,
         sells,
+        auctions,
+        updateAuctions,
         updateSells,
         updateOwnerCollections,
         updateAssets,

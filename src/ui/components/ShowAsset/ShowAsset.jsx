@@ -23,7 +23,7 @@ export const ShowAsset = () => {
         <WhiteContainer>
             <h1>Посмотреть NFT</h1>
             <Form onSubmit={show}>
-                <FormGroup controlId={"form-id"} type={"number"} min={1} label={"ID"} />
+                <FormGroup controlId={"form-id"} type={"number"} min={1} label={"ID"} placeholder={"Введите идентификатор NFT"} />
                 <Button className={"w-100 mb-1"} type={'submit'}>Получить</Button>
             </Form>
             {asset.id && <NFT nft={asset} />}

@@ -14,6 +14,7 @@ import {ShowCollection} from "../../components/ShowCollection/ShowCollection";
 import {WonLots} from "../../components/WonLots/WonLots";
 import {OwnerCollections} from "../../components/OwnerCollections/OwnerCollections";
 import {StartAuction} from "../../components/StartAuction/StartAuction";
+import Web3 from "web3";
 
 const Profile = () => {
     const {wallet, owner, code} = useContext(Context);
@@ -33,7 +34,7 @@ const Profile = () => {
             {code && <AddFriend />}
             <TransferNFT />
             <SellNFT />
-            {wallet === owner && (
+            {Web3.utils.toChecksumAddress(wallet) === owner && (
                 <>
                     <StartAuction />
                     <CreateSingleNFT />

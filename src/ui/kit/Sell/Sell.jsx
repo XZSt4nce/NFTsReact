@@ -42,24 +42,24 @@ export const Sell = ({sell, index}) => {
     }, [sell]);
 
     return (
-        <div className={"d-flex flex-column align-items-center gap-2"}>
+        <div className={"w-100 d-flex flex-column align-items-center gap-2"}>
             <NFT nft={nft} />
-            <p className={"overflow-hidden m-0"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Продавец: {sell.seller}</p>
-            <p className={"m-0"}>Количество: {sell.amount}</p>
-            <p className={"m-0"}>Цена: {discount ? (
+            <p className={"w-100 overflow-hidden m-0"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Продавец: {sell.seller}</p>
+            <p className={"w-100 m-0 text-end"}>Количество: {sell.amount}</p>
+            <p className={"w-100 m-0 text-end"}>Цена: {discount ? (
                 <><s>{sell.price / 10**6}</s>{"\t"}{(sell.price - sell.price * discount / 100) / 10**6}</>
             ) : sell.price / 10**6} PROFI</p>
             {Web3.utils.toChecksumAddress(wallet) === sell.seller ? (
-                <Form className={"w-100"} onSubmit={changePrice}>
-                    <h3 className={"text-center"}>Купить NFT</h3>
-                    <FormGroup label={"Новая цена"} placeholder={"Введите новую цену"} type={"number"} controlId={"form-price"} />
-                    <Button className={"w-100"} type={"submit"}>Купить</Button>
-                </Form>
-            ) : (
                 <Form className={"w-100"} onSubmit={buyNFT}>
                     <h3 className={"text-center"}>Изменить цену NFT</h3>
                     <FormGroup label={"Количество"} type={"number"} controlId={"form-amount"} />
-                    <Button className={"w-100"} type={"submit"} variant={"success"}>Изменить</Button>
+                    <Button className={"w-100"} type={"submit"}>Изменить</Button>
+                </Form>
+            ) : (
+                <Form className={"w-100"} onSubmit={changePrice}>
+                    <h3 className={"text-center"}>Купить NFT</h3>
+                    <FormGroup label={"Новая цена"} placeholder={"Введите новую цену"} type={"number"} controlId={"form-price"} />
+                    <Button className={"w-100"} type={"submit"} variant={"success"}>Купить</Button>
                 </Form>
             )}
         </div>

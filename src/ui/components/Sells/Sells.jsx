@@ -18,7 +18,7 @@ export const Sells = () => {
             <h1 className={"text-center"}>Продаваемые NFT</h1>
             <div className={"w-100 d-flex flex-column gap-2 overflow-auto"} style={{maxHeight: "800px"}}>
                 {sells.filter((sell) => !sell.seller.includes("00000")).length > 0 ? sells.map((sell, idx) => (
-                    <>{!sell.seller.includes("00000") && <Sell sell={sell} index={idx} key={idx} />}</>
+                    !sell.seller.includes("00000") && <Sell sell={sell} index={idx} key={idx} />
                 )) : <EmptyListPlug />}
             </div>
         </WhiteContainer>

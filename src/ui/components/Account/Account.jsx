@@ -3,6 +3,7 @@ import {Button} from "react-bootstrap";
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
 import Service from "../../../services/Service";
 import {Context} from "../../../core/ContextWrapper";
+import Web3 from "web3";
 
 export const Account = () => {
     const {wallet, balance, updateBalance, code, discount, updateCode, updateDiscount} = useContext(Context);
@@ -29,7 +30,7 @@ export const Account = () => {
     return (
         <WhiteContainer>
             <h1 className={"text-center"}>Личный кабинет</h1>
-            <p className={"overflow-hidden"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Адрес: {wallet}</p>
+            <p className={"overflow-hidden"} style={{whiteSpace: "nowrap", textOverflow: "ellipsis"}}>Адрес: {Web3.utils.toChecksumAddress(wallet)}</p>
             <p>Баланс: {balance / 10**6} PROFI</p>
 
             {code ? (

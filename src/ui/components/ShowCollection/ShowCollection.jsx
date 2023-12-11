@@ -24,7 +24,7 @@ export const ShowCollection = () => {
         <WhiteContainer>
             <h1>Посмотреть коллекцию</h1>
             <Form onSubmit={show}>
-                <FormGroup controlId={"form-id"} type={"number"} min={1} label={"ID"} />
+                <FormGroup controlId={"form-id"} type={"number"} min={1} label={"ID"} placeholder={"Введите идентификатор коллекции"} />
                 <Button className={"w-100 mb-1"} type={'submit'}>Получить</Button>
             </Form>
             {collection.id && (

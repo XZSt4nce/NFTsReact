@@ -19,6 +19,7 @@ export const Collection = ({collection}) => {
     return (
         <div className={"p-2 rounded"} style={{backgroundColor: "#eeeeee"}}>
             <h1 className={"text-center"}>{collection.title}</h1>
+            <p className={"p-1 rounded"} style={{backgroundColor: "lightgray"}}><b>ID:</b> {collection.id}</p>
             <p className={"p-1 rounded"} style={{backgroundColor: "lightgray"}}><b>Описание:</b><br />{collection.description}</p>
             <div className={"d-flex flex-column align-items-center gap-2 p-2 rounded"} style={{backgroundColor: "#cccccccc"}}>
                 {assets.map((asset, idx) => (

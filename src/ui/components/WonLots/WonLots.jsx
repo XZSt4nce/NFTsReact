@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import {WhiteContainer} from "../HOCs/WhiteContainer/WhiteContainer";
 import Service from "../../../services/Service";
 import {Context} from "../../../core/ContextWrapper";
+import {ListGroup, ListGroupItem} from "react-bootstrap";
+import {EmptyListPlug} from "../EmptyListPlug/EmptyListPlug";
 
 export const WonLots = () => {
     const {wallet} = useContext(Context);
@@ -23,7 +25,13 @@ export const WonLots = () => {
             {lots.length > 0 && (
                 <WhiteContainer>
                     <h1 className={"text-center"}>Выигранные лоты</h1>
-                    <p>{lots.join(", ")}</p>
+                    {lots.length > 0 ? (
+                        <ListGroup>
+                            {lots.map((lot, idx) => (
+                                <ListGroupItem key={idx}>ID коллекции: {lot}</ListGroupItem>
+                            ))}
+                        </ListGroup>
+                    ) : <EmptyListPlug />}
                 </WhiteContainer>
             )}
         </>
