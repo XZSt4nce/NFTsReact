@@ -13,6 +13,20 @@ const ContextWrapper = ({children}) => {
     const [collections, setCollections] = useState([]);
     const [sells, setSells] = useState([]);
     const [auctions, setAuctions] = useState([]);
+    const [time, setTime] = useState(Math.floor(Date.now() / 1000));
+
+    const addSecond = () =>  {
+        setTime(time + 1);
+    }
+
+    const updateTime = async () => {
+        await Service.getTime()
+            .then((data) => {
+                if (data) {
+                    setTime(+data);
+                }
+            })
+    }
 
     const updateAuctions = async () => {
         await Service.getAuctions()
@@ -113,6 +127,9 @@ const ContextWrapper = ({children}) => {
         collections,
         sells,
         auctions,
+        time,
+        addSecond,
+        updateTime,
         updateAuctions,
         updateSells,
         updateOwnerCollections,

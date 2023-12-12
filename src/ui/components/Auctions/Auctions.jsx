@@ -15,7 +15,7 @@ export const Auctions = () => {
 
     return (
         <WhiteContainer>
-            <h1>Аукцион</h1>
+            <h1 className={"text-center"}>Аукцион</h1>
             <div className={"w-100 d-flex flex-column gap-2 overflow-auto"} style={{maxHeight: "1000px"}}>
                 {auctions.filter((auction) => auction.isActive || Date.now() / 1000 < +auction.timeEnd).length > 0 ? auctions.map((auction, idx) =>
                     (auction.isActive || Date.now() / 1000 < +auction.timeEnd) && (

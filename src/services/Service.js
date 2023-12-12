@@ -3,7 +3,7 @@ import abi from "./abi.json";
 
 class Service {
     web3 = new Web3(window.ethereum);
-    contractAddress = "0xfB7b8B2df9ff2A93d6c24A4E673f4F4286eCDcF1";
+    contractAddress = "0xC811d1AF27d4605Dc66b6cb1846740b6a47DF93D";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
 
     isAddress(address) {
@@ -222,6 +222,14 @@ class Service {
     async getSells() {
         try {
             return await this.contract.methods.getSells().call();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getTime() {
+        try {
+            return await this.contract.methods.getTime().call();
         } catch (e) {
             console.log(e);
         }

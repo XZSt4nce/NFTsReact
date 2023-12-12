@@ -8,7 +8,7 @@ import {FormProfi} from "../FormInputs/FormProfi/FormProfi";
 import {EmptyListPlug} from "../../components/EmptyListPlug/EmptyListPlug";
 
 export const Auction = ({auction, index}) => {
-    const {wallet, owner, updateAuctions} = useContext(Context);
+    const {wallet, owner, updateAuctions, time, updateTime} = useContext(Context);
     const [bets, setBets] = useState([]);
     const [myBet, setMyBet] = useState({});
 
@@ -60,6 +60,18 @@ export const Auction = ({auction, index}) => {
     }
 
     useEffect(() => {
+        if (time >= +auction.timeStart && time - 1 < +auction.timeStart) {
+            (async () => {
+                await updateTime();
+            })();
+        } else if (time > +auction.timeEnd && time - 1 < +auction.timeEnd) {
+            (async () => {
+                await updateTime();
+            })();
+        }
+    }, [time]);
+
+    useEffect(() => {
         (async () => {
             await updateBets();
         })();
@@ -81,7 +93,7 @@ export const Auction = ({auction, index}) => {
                 <Card.Text>
                     Максимальная цена: {+auction.maxPrice / 10**6}
                 </Card.Text>
-                <div>
+                <div className={"mb-3"}>
                     <h2>Рейтинг</h2>
                     {bets.length > 0 ? (
                         <ListGroup>
@@ -101,7 +113,7 @@ export const Auction = ({auction, index}) => {
                         </ListGroup>
                     ) : <EmptyListPlug />}
                 </div>
-                {(+auction.timeStart <= Date.now()/1000 && Date.now()/1000 < +auction.timeEnd) ? (
+                {(+auction.timeStart <= time && time < +auction.timeEnd) ? (
                     <>
                         {Web3.utils.toChecksumAddress(wallet) === owner ? (
                             <Button className={"w-100"} variant={"danger"} onClick={finish}>Закончить аукцион</Button>
@@ -122,7 +134,7 @@ export const Auction = ({auction, index}) => {
                             </>
                         )}
                     </>
-                ) : Date.now()/1000 > +auction.timeEnd && auction.isActive && Web3.utils.toChecksumAddress(wallet) === owner && (
+                ) : time > +auction.timeEnd && auction.isActive && Web3.utils.toChecksumAddress(wallet) === owner && (
                     <Button className={"w-100"} variant={"success"} onClick={checkExpired}>Отправить вознаграждение</Button>
                 )}
             </Card.Body>

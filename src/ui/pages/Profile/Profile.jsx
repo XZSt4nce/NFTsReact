@@ -34,6 +34,8 @@ const Profile = () => {
             {code && <AddFriend />}
             <TransferNFT />
             <SellNFT />
+            <ShowAsset />
+            <ShowCollection />
             {Web3.utils.toChecksumAddress(wallet) === owner && (
                 <>
                     <StartAuction />
@@ -42,8 +44,6 @@ const Profile = () => {
                     <OwnerCollections />
                 </>
             )}
-            <ShowAsset />
-            <ShowCollection />
             <MyAssets />
         </>
     );
