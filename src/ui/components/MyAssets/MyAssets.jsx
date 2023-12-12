@@ -17,8 +17,8 @@ export const MyAssets = () => {
         <WhiteContainer className={"mw-100 align-items-center gap-2"}>
             <h1 className={"text-center"}>Мои ассеты</h1>
             <div className={"w-100 d-flex flex-column gap-2 overflow-auto"} style={{maxHeight: "800px"}}>
-                {assets.length > 0 ? assets.map((asset, idx) =>
-                    assets[idx].amount !== 0 && (<NFT nft={asset} key={idx} />)
+                {assets.filter((asset) => asset.amount !== 0).length > 0 ? assets.map((asset, idx) =>
+                    asset.amount !== 0 && (<NFT nft={asset} key={idx} />)
                 ) : <EmptyListPlug />}
             </div>
         </WhiteContainer>

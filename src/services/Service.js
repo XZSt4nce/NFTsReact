@@ -3,7 +3,7 @@ import abi from "./abi.json";
 
 class Service {
     web3 = new Web3(window.ethereum);
-    contractAddress = "0xC811d1AF27d4605Dc66b6cb1846740b6a47DF93D";
+    contractAddress = "0xD6fe03e2525b4C0554cDf2d053335516111A81F9";
     contract = new this.web3.eth.Contract(abi, this.contractAddress);
 
     isAddress(address) {
@@ -19,7 +19,7 @@ class Service {
         try {
             return await this.contract.methods.activateReferalCode(code).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -29,7 +29,7 @@ class Service {
                 return await this.contract.methods.addFriend(wallet).send({from: sender});
             }
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -37,7 +37,7 @@ class Service {
         try {
             return await this.contract.methods.bid(index, sum).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -45,7 +45,7 @@ class Service {
         try {
             return await this.contract.methods.buyNFT(index, amount).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -53,7 +53,7 @@ class Service {
         try {
             return await this.contract.methods.changeSellPrice(index, price).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -61,7 +61,7 @@ class Service {
         try {
             return await this.contract.methods.checkAuctionExpired(index).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -69,7 +69,7 @@ class Service {
         try {
             return await this.contract.methods.createCollectionNFT(title, description, ids).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -77,7 +77,7 @@ class Service {
         try {
             return await this.contract.methods.createReferal(sender).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -85,7 +85,7 @@ class Service {
         try {
             return await this.contract.methods.createSingleNFT(title, description, image, price, issued).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -93,7 +93,7 @@ class Service {
         try {
             return await this.contract.methods.finishAuction(index).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -101,7 +101,7 @@ class Service {
         try {
             return await this.contract.methods.sellNFT(index, amount, price).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -109,7 +109,7 @@ class Service {
         try {
             return await this.contract.methods.startAuction(index, asideTime, duration, startPrice, maxPrice).send({from: sender});
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -119,7 +119,7 @@ class Service {
                 return await this.contract.methods.transferNFT(to, index, amount).send({from: sender});
             }
         } catch (e) {
-            alert(e);
+            alert(e.message);
         }
     }
 
@@ -215,7 +215,7 @@ class Service {
         try {
             return await this.contract.methods.getOwnerCollections().call({from: sender});
         } catch (e) {
-            console.log(e);
+            alert(e.message);
         }
     }
 

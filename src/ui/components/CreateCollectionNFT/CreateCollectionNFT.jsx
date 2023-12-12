@@ -13,13 +13,24 @@ export const CreateCollectionNFT = () => {
         const title = ev.target[0].value;
         const description = ev.target[1].value;
         const ids = ev.target[2].value.split(",").map((id) => +id);
-        await Service.createCollectionNFT(wallet, title, description, ids)
-            .then(async (data) => {
-                if (data) {
-                    await updateAssets();
-                    await updateOwnerCollections();
-                }
-            });
+        let correctIds = true;
+        for (let i = 0; i < ids.length; i++) {
+            if (isNaN(ids[i]) || ids[i] < 1) {
+                correctIds = false;
+                break;
+            }
+        }
+        if (correctIds) {
+            await Service.createCollectionNFT(wallet, title, description, ids)
+                .then(async (data) => {
+                    if (data) {
+                        await updateAssets();
+                        await updateOwnerCollections();
+                    }
+                });
+        } else {
+            alert("Введите через запятую идентификаторы больше 0");
+        }
     }
 
     return (

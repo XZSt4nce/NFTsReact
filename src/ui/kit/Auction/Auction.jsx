@@ -94,7 +94,7 @@ export const Auction = ({auction, index}) => {
                     Максимальная цена: {+auction.maxPrice / 10**6}
                 </Card.Text>
                 <div className={"mb-3"}>
-                    <h2>Рейтинг</h2>
+                    <h2>Лидеры</h2>
                     {bets.length > 0 ? (
                         <ListGroup>
                             <ListGroupItem>
@@ -134,7 +134,7 @@ export const Auction = ({auction, index}) => {
                             </>
                         )}
                     </>
-                ) : time > +auction.timeEnd && auction.isActive && Web3.utils.toChecksumAddress(wallet) === owner && (
+                ) : time > +auction.timeEnd && auction.isActive && (
                     <Button className={"w-100"} variant={"success"} onClick={checkExpired}>Отправить вознаграждение</Button>
                 )}
             </Card.Body>

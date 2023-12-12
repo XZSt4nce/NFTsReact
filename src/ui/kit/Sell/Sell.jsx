@@ -51,16 +51,17 @@ export const Sell = ({sell, index}) => {
             ) : sell.price / 10**6} PROFI</p>
             {Web3.utils.toChecksumAddress(wallet) === sell.seller ? (
                 <Form className={"w-100"} onSubmit={buyNFT}>
-                    <h3 className={"text-center"}>Изменить цену NFT</h3>
-                    <FormGroup label={"Количество"} type={"number"} controlId={"form-amount"} />
-                    <Button className={"w-100"} type={"submit"}>Изменить</Button>
-                </Form>
-            ) : (
-                <Form className={"w-100"} onSubmit={changePrice}>
                     <h3 className={"text-center"}>Купить NFT</h3>
                     <FormGroup label={"Новая цена"} placeholder={"Введите новую цену"} type={"number"} controlId={"form-price"} />
                     <Button className={"w-100"} type={"submit"} variant={"success"}>Купить</Button>
                 </Form>
+            ) : (
+                <Form className={"w-100"} onSubmit={changePrice}>
+                    <h3 className={"text-center"}>Изменить цену NFT</h3>
+                    <FormGroup label={"Количество"} type={"number"} controlId={"form-amount"} />
+                    <Button className={"w-100"} type={"submit"}>Изменить</Button>
+                </Form>
+
             )}
         </div>
     );
